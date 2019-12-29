@@ -31,7 +31,7 @@ vmap + comment
 " uncomment block shortcut
 noremap uncomment <nop>
 autocmd FileType python noremap uncomment :norm ^2x<ENTER>
-autocmd FileType ruby noremap uncomment :norm ^2x<ENTER>
+autocmd FileType ruby   noremap uncomment :norm ^2x<ENTER>
 autocmd FileType cpp    noremap uncomment :norm ^3x<ENTER>
 autocmd FileType java   noremap uncomment :norm ^3x<ENTER>
 autocmd FileType vim    noremap uncomment :norm ^2x<ENTER>
