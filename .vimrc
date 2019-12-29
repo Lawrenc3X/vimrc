@@ -1,3 +1,5 @@
+set nocp
+
 set number
 set mouse=a
 colo blue
