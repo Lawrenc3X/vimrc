@@ -13,28 +13,29 @@ nnoremap jl :
 
 " run shortcut
 noremap runfile <nop>
-autocmd FileType python noremap runfile :w<ENTER>:!python3 %<ENTER>
-autocmd FileType cpp    noremap runfile :w<ENTER>:!g++ -g %<ENTER><ENTER>:!./a.out<ENTER>
-autocmd FileType java   noremap runfile :w<ENTER>:!javac %<ENTER><ENTER>:!java %:r<ENTER>
+autocmd FileType python noremap runfile :w<CR>:!python3 %<ENTER>
+autocmd FileType ruby   noremap runfile :w<CR>:!ruby %<ENTER>
+autocmd FileType cpp    noremap runfile :w<CR>:!g++ -g %<ENTER><ENTER>:!./a.out<CR>
+autocmd FileType java   noremap runfile :w<CR>:!javac %<ENTER><ENTER>:!java %:r<CR>
 nmap .. runfile
 " imap .. <c-o>runkey
 
 " comment block shortcut
 noremap comment <nop>
-autocmd FileType python noremap comment :norm i# <ENTER>  
-autocmd FileType ruby   noremap comment :norm i# <ENTER>  
-autocmd FileType cpp    noremap comment :norm i// <ENTER>
-autocmd FileType java   noremap comment :norm i// <ENTER>
-autocmd FileType vim    noremap comment :norm i" <ENTER>
+autocmd FileType python noremap comment :norm i# <CR>  
+autocmd FileType ruby   noremap comment :norm i# <CR>  
+autocmd FileType cpp    noremap comment :norm i// <CR>
+autocmd FileType java   noremap comment :norm i// <CR>
+autocmd FileType vim    noremap comment :norm i" <CR>
 vmap + comment 
 
 " uncomment block shortcut
 noremap uncomment <nop>
-autocmd FileType python noremap uncomment :norm ^2x<ENTER>
-autocmd FileType ruby   noremap uncomment :norm ^2x<ENTER>
-autocmd FileType cpp    noremap uncomment :norm ^3x<ENTER>
-autocmd FileType java   noremap uncomment :norm ^3x<ENTER>
-autocmd FileType vim    noremap uncomment :norm ^2x<ENTER>
+autocmd FileType python noremap uncomment :norm ^2x<CR>
+autocmd FileType ruby noremap uncomment :norm ^2x<CR>
+autocmd FileType cpp    noremap uncomment :norm ^3x<CR> 
+autocmd FileType java   noremap uncomment :norm ^3x<CR>
+autocmd FileType vim    noremap uncomment :norm ^2x<CR>
 vmap _ uncomment
 
 " copy file shortcut
