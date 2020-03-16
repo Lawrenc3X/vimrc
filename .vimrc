@@ -15,8 +15,8 @@ nnoremap jl :
 noremap runfile <nop>
 autocmd FileType python noremap runfile :w<CR>:!python3 %<ENTER>
 autocmd FileType ruby   noremap runfile :w<CR>:!ruby %<ENTER>
-autocmd FileType cpp    noremap runfile :w<CR>:!g++ -g %<ENTER><ENTER>:!./a.out<CR>
-autocmd FileType c      noremap runfile :w<CR>:!gcc -g %<ENTER><ENTER>:!./a.out<CR>
+autocmd FileType cpp    noremap runfile :w<CR>:!rm -r a.out a.out.dSYM<CR>:!g++ -g -lncurses %<ENTER><ENTER>:!./a.out<CR>
+autocmd FileType c      noremap runfile :w<CR>:!rm -r a.out a.out.dSYM<CR>:!gcc -g -lncurses %<ENTER><ENTER>:!./a.out<CR>
 autocmd FileType java   noremap runfile :w<CR>:!javac %<ENTER><ENTER>:!java %:r<CR>
 nmap .. runfile
 " imap .. <c-o>runkey
