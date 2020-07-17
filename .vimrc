@@ -1,9 +1,14 @@
 set nocp
 
+set backspace=indent,eol,start
+
 set number
 set mouse=a
-colo blue
+colo default 
 syntax on
+
+set foldmethod=indent
+set foldlevel=99
 
 " mappings
 " normal mode shortcut
