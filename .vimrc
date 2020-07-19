@@ -13,8 +13,6 @@ set foldlevel=99
 " mappings
 " normal mode shortcut
 inoremap jk <esc>
-inoremap jl <esc>:
-nnoremap jl :
 
 " run shortcut
 noremap runfile <nop>
@@ -52,9 +50,6 @@ vmap _ uncomment
 noremap copyall :%w !pbcopy<ENTER><ENTER>
 nmap yy copyall 
 " imap yy <c-o>copyall
-
-" paste vim clipbord with \v in insert mode
-inoremap <leader>v <c-o>p
 
 " tab magic:
 filetype plugin indent on
