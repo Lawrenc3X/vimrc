@@ -1,59 +1,55 @@
 set nocp
-
 set backspace=indent,eol,start
-
-set number
 set mouse=a
+set number          " cosider setting relativenumber too
 colo default 
 syntax on
 
-set foldmethod=indent
-set foldlevel=99
+" tab magic:
+filetype plugin indent on
+set tabstop=4       " show existing tab with 4 spaces width
+set shiftwidth=4    " when indenting with '>', use 4 spaces width
+set expandtab       " on pressing tab, insert 4 spaces
 
-" mappings
+" -- MAPPINGS --
+
 " normal mode shortcut
 inoremap jk <esc>
 
-" run shortcut
-noremap runfile <nop>
-autocmd FileType python noremap runfile :w<CR>:!python3 %<ENTER>
-autocmd FileType ruby   noremap runfile :w<CR>:!ruby %<ENTER>
-autocmd FileType cpp    noremap runfile :w<CR>:!make clean<CR>:!make %:r<ENTER><ENTER>:!./%:r
-autocmd FileType c      noremap runfile :w<CR>:!make clean<CR>:!make %:r<ENTER><ENTER>:!./%:r
-autocmd FileType java   noremap runfile :w<CR>:!javac %<ENTER><ENTER>:!java %:r<CR>
-nmap .. runfile
-" imap .. <c-o>runkey
+" copy file shortcut, file is saved then passed as an argument to pbcopy
+noremap <leader>y :w !pbcopy<CR><CR>
 
-" comment block shortcut
-noremap comment <nop>
-autocmd FileType python noremap comment :norm i# <CR>  
-autocmd FileType ruby   noremap comment :norm i# <CR>  
-autocmd FileType cpp    noremap comment :norm i// <CR>
-autocmd FileType c      noremap comment :norm i// <CR>
-autocmd FileType java   noremap comment :norm i// <CR>
-autocmd FileType vim    noremap comment :norm i" <CR>
-vmap + comment 
+" map right mouse button to toggle insert mode
+nnoremap <RightMouse> <LeftMouse>i
+inoremap <RightMouse> <LeftMouse><esc>
 
-" uncomment block shortcut
-noremap uncomment <nop>
-autocmd FileType python noremap uncomment :norm ^2x<CR>
-autocmd FileType ruby noremap uncomment :norm ^2x<CR>
-autocmd FileType cpp    noremap uncomment :norm ^3x<CR>
-autocmd FileType c      noremap uncomment :norm ^3x<CR> 
-autocmd FileType java   noremap uncomment :norm ^3x<CR>
-autocmd FileType vim    noremap uncomment :norm ^2x<CR>
-vmap _ uncomment
+" -- AUTOCOMMANDS --
 
-" copy file shortcut
-noremap copyall :%w !pbcopy<ENTER><ENTER>
-nmap yy copyall 
-" imap yy <c-o>copyall
+augroup runfile
+    au!
+    au FileType ruby   nnoremap <leader>. :w<CR>:!ruby %<CR>
+    au FileType python nnoremap <leader>. :w<CR>:!python3 %<CR>
+    au FileType java   nnoremap <leader>. :w<CR>:!javac %<CR><CR>:!java -ea %:r<CR>
+    au FileType cpp    nnoremap <leader>. :w<CR>:!make clean<CR>:!make %:r<CR><CR>:!./%:r
+    au FileType c      nnoremap <leader>. :w<CR>:!make clean<CR>:!make %:r<CR><CR>:!./%:r
+augroup END
 
-" tab magic:
-filetype plugin indent on
-" show existing tab with 4 spaces width
-set tabstop=4
-" when indenting with '>', use 4 spaces width
-set shiftwidth=4
-" On pressing tab, insert 4 spaces
-set expandtab
+augroup comment
+    au!
+    au FileType python vnoremap + :norm i# <CR>  
+    au FileType ruby   vnoremap + :norm i# <CR>  
+    au FileType cpp    vnoremap + :norm i// <CR>
+    au FileType c      vnoremap + :norm i// <CR>
+    au FileType java   vnoremap + :norm i// <CR>
+    au FileType vim    vnoremap + :norm i" <CR>
+augroup END
+
+augroup uncomment
+    au!
+    au FileType python vnoremap _ :norm ^2x<CR>
+    au FileType ruby   vnoremap _ :norm ^2x<CR>
+    au FileType cpp    vnoremap _ :norm ^3x<CR>
+    au FileType c      vnoremap _ :norm ^3x<CR> 
+    au FileType java   vnoremap _ :norm ^3x<CR>
+    au FileType vim    vnoremap _ :norm ^2x<CR>
+augroup END
