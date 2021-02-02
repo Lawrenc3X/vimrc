@@ -29,9 +29,9 @@ augroup runfile
     au!
     au FileType ruby   nnoremap <leader>. :w<CR>:!ruby %<CR>
     au FileType python nnoremap <leader>. :w<CR>:!python3 %<CR>
-    au FileType java   nnoremap <leader>. :w<CR>:!javac %<CR><CR>:!java -ea %:r<CR>
-    au FileType cpp    nnoremap <leader>. :w<CR>:!make clean<CR>:!make %:r<CR><CR>:!./%:r
-    au FileType c      nnoremap <leader>. :w<CR>:!make clean<CR>:!make %:r<CR><CR>:!./%:r
+    au FileType java   nnoremap <leader>. :w<CR>:!javac %<CR><CR>:!java %:r<CR>
+    au FileType cpp    nnoremap <leader>. :w<CR>:!g++ -o %:r %<CR><CR>:!./%:r<CR>
+    au FileType c      nnoremap <leader>. :w<CR>:!gcc -o %:r %<CR><CR>:!./%:r<CR>
 augroup END
 
 augroup comment
