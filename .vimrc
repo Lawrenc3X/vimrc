@@ -2,7 +2,8 @@ set nocp
 set backspace=indent,eol,start
 set mouse=a
 set number          " cosider setting relativenumber too
-colo default 
+set belloff=all
+colo slate 
 syntax on
 
 " tab magic:
@@ -17,11 +18,20 @@ set expandtab       " on pressing tab, insert 4 spaces
 inoremap jk <esc>
 
 " copy file shortcut, file is saved then passed as an argument to pbcopy
-noremap <leader>y :w !pbcopy<CR><CR>
+noremap <leader>y :w !pbcopy<CR>
+vnoremap <leader>y :'<,'>:w !pbcopy<CR>
 
-" map right mouse button to toggle insert mode
-nnoremap <RightMouse> <LeftMouse>i
-inoremap <RightMouse> <LeftMouse><esc>
+" from :help ins-completion
+function! CleverTab()
+   if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
+      return "\<Tab>"
+   else
+      return "\<C-N>"
+   endif
+endfunction
+inoremap <Tab> <C-R>=CleverTab()<CR>
+
+inoremap <S-Tab> <C-X><C-O> 
 
 " -- AUTOCOMMANDS --
 
@@ -29,9 +39,9 @@ augroup runfile
     au!
     au FileType ruby   nnoremap <leader>. :w<CR>:!ruby %<CR>
     au FileType python nnoremap <leader>. :w<CR>:!python3 %<CR>
-    au FileType java   nnoremap <leader>. :w<CR>:!javac %<CR><CR>:!java %:r<CR>
-    au FileType cpp    nnoremap <leader>. :w<CR>:!g++ -o %:r %<CR><CR>:!./%:r<CR>
-    au FileType c      nnoremap <leader>. :w<CR>:!gcc -o %:r %<CR><CR>:!./%:r<CR>
+    au FileType java   nnoremap <leader>. :w<CR>:!javac % && java %:r<CR>
+    au FileType cpp    nnoremap <leader>. :w<CR>:!g++ -std=c++11 -o out.%:r % && ./out.%:r<CR>
+    au FileType c      nnoremap <leader>. :w<CR>:!gcc -o out.%:r % && ./out.%:r<CR>
 augroup END
 
 augroup comment
