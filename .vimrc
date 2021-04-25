@@ -19,7 +19,6 @@ inoremap jk <esc>
 
 " copy file shortcut, file is saved then passed as an argument to pbcopy
 noremap <leader>y :w !pbcopy<CR>
-vnoremap <leader>y :'<,'>:w !pbcopy<CR>
 
 " from :help ins-completion
 function! CleverTab()
