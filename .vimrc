@@ -12,6 +12,9 @@ set tabstop=4       " show existing tab with 4 spaces width
 set shiftwidth=4    " when indenting with '>', use 4 spaces width
 set expandtab       " on pressing tab, insert 4 spaces
 
+" allows right and letf arrow keys to wrap around
+set whichwrap+=<,>,[,]
+
 " -- MAPPINGS --
 
 " normal mode shortcut
@@ -32,7 +35,15 @@ inoremap <Tab> <C-R>=CleverTab()<CR>
 
 inoremap <S-Tab> <C-X><C-O> 
 
+" allows pasting without ovewriting the clipboard
+xnoremap p pgvy
+
 " -- AUTOCOMMANDS --
+
+augroup w3settings
+    au!
+    au FileType html,css,scss,javascript setlocal tabstop=2 shiftwidth=2
+augroup END
 
 augroup runfile
     au!
@@ -41,24 +52,18 @@ augroup runfile
     au FileType java   nnoremap <leader>. :w<CR>:!javac % && java %:r<CR>
     au FileType cpp    nnoremap <leader>. :w<CR>:!g++ -std=c++11 -o out.%:r % && ./out.%:r<CR>
     au FileType c      nnoremap <leader>. :w<CR>:!gcc -o out.%:r % && ./out.%:r<CR>
+    au FileType tex    nnoremap <leader>. :w<Cr>:!pdflatex % && open %:r.pdf<CR>
 augroup END
 
 augroup comment
     au!
-    au FileType python vnoremap + :norm i# <CR>  
-    au FileType ruby   vnoremap + :norm i# <CR>  
-    au FileType cpp    vnoremap + :norm i// <CR>
-    au FileType c      vnoremap + :norm i// <CR>
-    au FileType java   vnoremap + :norm i// <CR>
-    au FileType vim    vnoremap + :norm i" <CR>
+    au FileType python,ruby,yaml vnoremap + :norm i# <CR>  
+    au FileType c,cpp,css,scss,java,javascript vnoremap + :norm i// <CR>
+    au FileType vim vnoremap + :norm i" <CR>
 augroup END
 
 augroup uncomment
     au!
-    au FileType python vnoremap _ :norm ^2x<CR>
-    au FileType ruby   vnoremap _ :norm ^2x<CR>
-    au FileType cpp    vnoremap _ :norm ^3x<CR>
-    au FileType c      vnoremap _ :norm ^3x<CR> 
-    au FileType java   vnoremap _ :norm ^3x<CR>
-    au FileType vim    vnoremap _ :norm ^2x<CR>
+    au FileType python,ruby,yaml,vim vnoremap _ :norm ^2x<CR>
+    au FileType c,cpp,css,scss,java,javascript vnoremap _ :norm ^3x<CR>
 augroup END
