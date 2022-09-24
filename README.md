@@ -1,5 +1,5 @@
 # vimrc
 
-My configuration file for the vim text editor
+My vim settings
 
 https://www.vim.org/
